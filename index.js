@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 
 /**
- * gitx-cli
+ * gx-cli
  * A global CLI wrapper for commit shortcuts, git aliases and helpers.
  * Uses commander and chalk for CLI and colored output.
  *
  * Usage examples:
- *   gitx feature "added login"
- *   gitx fix "bugfix message"
- *   gitx amend fix "new amended message"
- *   gitx add
- *   gitx status
- *   gitx emoji-list
+ *   gx feature "added login"
+ *   gx fix "bugfix message"
+ *   gx amend fix "new amended message"
+ *   gx add
+ *   gx status
+ *   gx emoji-list
  */
 
 import { Command } from "commander";
@@ -19,7 +19,7 @@ import { execSync } from "child_process";
 import chalk from "chalk";
 
 const program = new Command();
-program.name("gitx").description("Git helper CLI with gitmoji commit shortcuts and aliases").version("1.0.0");
+program.name("gx").description("Git helper CLI with gitmoji commit shortcuts and aliases").version("1.0.0");
 
 // Utility to run shell commands and print output (throws on error)
 function run(cmd, inheritStdout = true) {
@@ -96,7 +96,7 @@ program
     const message = messageParts.join(" ");
     const info = commits[type];
     if (!info) {
-      console.error(chalk.red("Invalid type. See `gitx emoji-list` for supported types."));
+      console.error(chalk.red("Invalid type. See `gx emoji-list` for supported types."));
       process.exit(1);
     }
     const commitMsg = `${info.code} ${info.label} : ${message}`;
@@ -166,7 +166,7 @@ program
         const entry = gitAliases[alias];
         if (!entry) {
             console.error(chalk.red("❌ Unknown alias."));
-            console.log(chalk.yellow("👉 Use `gitx a list` to see all supported aliases."));
+            console.log(chalk.yellow("👉 Use `gx a list` to see all supported aliases."));
             process.exit(1);
         }
 
@@ -185,12 +185,12 @@ program
   .description("Show usage examples")
   .action(() => {
     console.log(chalk.bold("\nExamples:\n"));
-    console.log(chalk.green("  gitx feature \"added login form\""));
-    console.log(chalk.green("  gitx fix -a \"fixed crash on signup\""));
-    console.log(chalk.green("  gitx fix -a --amend \"tweak message\""));
-    console.log(chalk.green("  gitx amend fix \"updated commit message\""));
-    console.log(chalk.green("  gitx a ga"));
-    console.log(chalk.green("  gitx emoji-list"));
+    console.log(chalk.green("  gx feature \"added login form\""));
+    console.log(chalk.green("  gx fix -a \"fixed crash on signup\""));
+    console.log(chalk.green("  gx fix -a --amend \"tweak message\""));
+    console.log(chalk.green("  gx amend fix \"updated commit message\""));
+    console.log(chalk.green("  gx a ga"));
+    console.log(chalk.green("  gx emoji-list"));
     console.log("");
   });
 

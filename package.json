@@ -1,9 +1,36 @@
 {
-  "name": "gitx-cli",
+  "name": "gx-cli",
   "version": "1.0.0",
-  "type": "module",
+  "description": "gx-cli: A global Git helper CLI with gitmoji commit shortcuts and git aliases. Built with commander.js and chalk.",
   "bin": {
     "gx": "./index.js"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "keywords": [
+    "git",
+    "cli",
+    "gitmoji",
+    "commit",
+    "commander",
+    "chalk",
+    "git-alias",
+    "productivity",
+    "developer-tools"
+  ],
+  "author": "Your Name <youremail@example.com>",
+  "license": "MIT",
+  "homepage": "[https://github.com/ShahidKhan18/gx-cli#readme](https://github.com/ShahidKhan18/gx-cli#readme)",
+  "repository": {
+    "type": "git",
+    "url": "git+[https://github.com/ShahidKhan18/gx-cli.git](https://github.com/ShahidKhan18/gx-cli.git)"
+  },
+  "bugs": {
+    "url": "[https://github.com/ShahidKhan18/gx-cli/issues](https://github.com/ShahidKhan18/gx-cli/issues)"
   },
   "dependencies": {
     "chalk": "^5.3.0",

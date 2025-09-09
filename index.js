@@ -120,44 +120,64 @@ program
   });
 
 // Add git alias commands (wrap common git commands)
+// Git aliases with detailed descriptions
 const gitAliases = {
-  ga:   { cmd: "git add .", desc: "Stage all changes (git add .)" },
-  gs:{ cmd: "git status", desc: "Show git status" },
-  gm:{ cmd: "git commit", desc: "Open default editor to create a commit" },
-  gp:  { cmd: "git push", desc: "Push current branch" },
-  gl:  { cmd: "git pull", desc: "Pull from remote" },
-  gc:{ cmd: "git checkout", desc: "Switch branches" },
-  gb:{ cmd: "git branch", desc: "List or create branches" },
-  gl:   { cmd: "git log --oneline --graph --decorate --all", desc: "Pretty git log" },
-  "reset-hard": { cmd: "git reset --hard HEAD~1", desc: "Rollback last commit permanently" },
-  "reset-soft": { cmd: "git reset --soft HEAD~1", desc: "Rollback last commit but keep changes staged" },
-  "delete-local-branch": { cmd: "git branch -d", desc: "Delete local branch (use arg)" },
-  "delete-remote-branch": { cmd: "git push origin --delete", desc: "Delete remote branch (use arg)" },
-  stash: { cmd: "git stash", desc: "Stash changes" },
-  "stash-pop": { cmd: "git stash pop", desc: "Apply stashed changes" }
+    ga: { cmd: "git add .", desc: "Stage all changes (shortcut for `git add .`). Useful for quickly staging everything." },
+    gs: { cmd: "git status", desc: "Show working tree status. See what’s modified, staged, or untracked." },
+    gm: { cmd: "git commit", desc: "Create a commit with staged changes (opens editor for message)." },
+    gp: { cmd: "git push", desc: "Push current branch to remote." },
+    gpl: { cmd: "git pull", desc: "Pull latest changes from remote for current branch." },
+    gco: { cmd: "git checkout", desc: "Switch branches or restore files." },
+    gb: { cmd: "git branch", desc: "List, create, or delete local branches." },
+    gcm: { cmd: "git checkout main", desc: "Quickly switch to the `main` branch." },
+    gps: { cmd: "git push origin main", desc: "Push `main` branch to remote." },
+    gplm: { cmd: "git pull origin main", desc: "Pull latest changes from `main` branch." },
+    gld: { cmd: "git log --oneline --graph --decorate --all", desc: "Pretty git log. Shows history as a decorated graph." },
+    "reset-hard": { cmd: "git reset --hard HEAD~1", desc: "Discard the last commit and changes permanently. ⚠️ Use with caution." },
+    "reset-soft": { cmd: "git reset --soft HEAD~1", desc: "Undo last commit but keep changes staged. Useful for re-committing with fixes." },
+    "delete-local-branch": { cmd: "git branch -d", desc: "Delete a local branch. Use when branch is already merged." },
+    "delete-remote-branch": { cmd: "git push origin --delete", desc: "Delete a branch on remote (GitHub/GitLab). ⚠️ Be careful." },
+    stash: { cmd: "git stash", desc: "Save uncommitted changes temporarily." },
+    "stash-pop": { cmd: "git stash pop", desc: "Restore most recent stashed changes and remove from stash list." },
+    cls: { cmd: "clear", desc: "Clear terminal screen." }
 };
 
+
 // Create alias subcommands
+// Alias command runner
 program
-  .command("a")
-  .description("Run git aliases (alias name as first argument)")
-  .argument("<alias>", "alias name e.g. add,status,push,pull,log,reset-hard")
-  .argument("[arg...]", "optional arguments passed to underlying git command")
-  .action((alias, args) => {
-    const entry = gitAliases[alias];
-    if (!entry) {
-      console.error(chalk.red("Unknown alias. Use 'gitx alias <alias>' where <alias> is one of:"));
-      console.log(chalk.yellow(Object.keys(gitAliases).join(", ")));
-      process.exit(1);
-    }
-    let cmd = entry.cmd;
-    // For commands that expect an argument (like branch deletion), append provided args
-    if (args && args.length) {
-      cmd = `${cmd} ${args.join(" ")}`;
-    }
-    console.log(chalk.dim(`> ${cmd}`));
-    run(cmd);
-  });
+    .command("a")
+    .description("Run git aliases (shortcut commands for frequent git ops)")
+    .argument("<alias>", "alias name (or 'list' to see all aliases)")
+    .argument("[arg...]", "optional arguments passed to the git command")
+    .action((alias, args) => {
+        if (alias === "list") {
+            console.log(chalk.bold("\nGit Aliases Reference\n"));
+            Object.entries(gitAliases).forEach(([key, val]) => {
+                const aliasName = chalk.green(key.padEnd(22));
+                const cmd = chalk.yellow(val.cmd.padEnd(45));
+                const desc = chalk.cyan(val.desc);
+                console.log(`${aliasName} ${cmd} ${desc}`);
+            });
+            console.log("");
+            return;
+        }
+
+        const entry = gitAliases[alias];
+        if (!entry) {
+            console.error(chalk.red("❌ Unknown alias."));
+            console.log(chalk.yellow("👉 Use `gitx a list` to see all supported aliases."));
+            process.exit(1);
+        }
+
+        let cmd = entry.cmd;
+        if (args && args.length) {
+            cmd = `${cmd} ${args.join(" ")}`;
+        }
+        console.log(chalk.blueBright(`> Running: ${cmd}`));
+        run(cmd);
+    });
+
 
 // Extra: show help with examples
 program
@@ -169,7 +189,7 @@ program
     console.log(chalk.green("  gitx fix -a \"fixed crash on signup\""));
     console.log(chalk.green("  gitx fix -a --amend \"tweak message\""));
     console.log(chalk.green("  gitx amend fix \"updated commit message\""));
-    console.log(chalk.green("  gitx alias add"));
+    console.log(chalk.green("  gitx a ga"));
     console.log(chalk.green("  gitx emoji-list"));
     console.log("");
   });

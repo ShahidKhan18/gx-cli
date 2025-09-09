@@ -1,6 +1,6 @@
 {
   "name": "gx-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "gx-cli: A global Git helper CLI with gitmoji commit shortcuts and git aliases. Built with commander.js and chalk.",
   "bin": {
     "gx": "./index.js"

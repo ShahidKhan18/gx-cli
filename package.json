@@ -1,9 +1,9 @@
 {
-  "name": "gx-cli",
+  "name": "gex-cli",
   "version": "1.0.1",
-  "description": "gx-cli: A global Git helper CLI with gitmoji commit shortcuts and git aliases. Built with commander.js and chalk.",
+  "description": "gex-cli: A global Git helper CLI with gitmoji commit shortcuts and git aliases. Built with commander.js and chalk.",
   "bin": {
-    "gx": "./index.js"
+    "gex": "./index.js"
   },
   "type": "module",
   "main": "index.js",
@@ -24,13 +24,13 @@
   ],
   "author": "Your Name <youremail@example.com>",
   "license": "MIT",
-  "homepage": "[https://github.com/ShahidKhan18/gx-cli#readme](https://github.com/ShahidKhan18/gx-cli#readme)",
+  "homepage": "[https://github.com/ShahidKhan18/gex-cli#readme](https://github.com/ShahidKhan18/gex-cli#readme)",
   "repository": {
     "type": "git",
-    "url": "git+[https://github.com/ShahidKhan18/gx-cli.git](https://github.com/ShahidKhan18/gx-cli.git)"
+    "url": "git+[https://github.com/ShahidKhan18/gex-cli.git](https://github.com/ShahidKhan18/gex-cli.git)"
   },
   "bugs": {
-    "url": "[https://github.com/ShahidKhan18/gx-cli/issues](https://github.com/ShahidKhan18/gx-cli/issues)"
+    "url": "[https://github.com/ShahidKhan18/gex-cli/issues](https://github.com/ShahidKhan18/gex-cli/issues)"
   },
   "dependencies": {
     "chalk": "^5.3.0",

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * gex-cli
+ * gitx-cli
  * A global CLI wrapper for commit shortcuts, git aliases and helpers.
  * Uses commander and chalk for CLI and colored output.
  *

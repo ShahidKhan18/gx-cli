@@ -1,7 +1,7 @@
 {
   "name": "gitx-cli",
   "version": "1.0.6",
-  "description": "gex-cli: A global Git helper CLI with git emoji commit shortcuts and git aliases. Built with commander.js and chalk.",
+  "description": "gitx-cli: A global Git helper CLI with git emoji commit shortcuts and git aliases. Built with commander.js and chalk.",
   "bin": {
     "gx": "./index.js"
   },
@@ -20,7 +20,8 @@
     "chalk",
     "git-alias",
     "productivity",
-    "developer-tools"
+    "developer-tools",
+    "gitx-cli"
   ],
   "author": "Shahid Khan <shahidseran786@gmail.com>",
   "license": "MIT",

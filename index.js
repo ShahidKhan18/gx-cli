@@ -5,13 +5,9 @@
  * A global CLI wrapper for commit shortcuts, git aliases and helpers.
  * Uses commander and chalk for CLI and colored output.
  *
- * Usage examples:
- *   gex feature "added login"
- *   gex fix "bugfix message"
- *   gex amend fix "new amended message"
- *   gex add
- *   gex status
- *   gex emoji-list
+ * Developer: Shahid Khan
+ * GitHub: https://github.com/shahidkhan18
+ * Email: shahidseran786@gmail.com
  */
 
 import { Command } from "commander";
@@ -19,7 +15,15 @@ import { execSync } from "child_process";
 import chalk from "chalk";
 
 const program = new Command();
-program.name("gex").description("Git helper CLI with gitmoji commit shortcuts and aliases").version("1.0.0");
+program.name("gx").description("Git helper CLI with git emoji commit shortcuts and aliases").version("1.0.5");
+
+// Developer metadata
+const developer = {
+    name: "Shahid Khan",
+    github: "https://github.com/shahidkhan18",
+    email: "shahidseran786@gmail.com",
+    note: "For full project information and contributions, see the GitHub repository."
+};
 
 // Utility to run shell commands and print output (throws on error)
 function run(cmd, inheritStdout = true) {
@@ -31,9 +35,9 @@ function run(cmd, inheritStdout = true) {
         }
     } catch (err) {
         console.error(chalk.red("Command failed:"), chalk.yellow(cmd));
-        if (err.stdout) console.error(err.stdout.toString());
-        if (err.stderr) console.error(chalk.red(err.stderr.toString()));
-        process.exit(err.status || 1);
+        if (err && err.stdout) console.error(err.stdout.toString());
+        if (err && err.stderr) console.error(chalk.red(err.stderr.toString()));
+        process.exit((err && err.status) || 1);
     }
 }
 
@@ -78,9 +82,7 @@ Object.entries(commits).forEach(([key, info]) => {
                 run("git add .");
             }
             const commitMsg = `${info.code} ${info.label} : ${message}`;
-            const cmd = opts.amend
-                ? `git commit --amend -m "${commitMsg}"`
-                : `git commit -m "${commitMsg}"`;
+            const cmd = opts.amend ? `git commit --amend -m "${commitMsg}"` : `git commit -m "${commitMsg}"`;
             console.log(chalk.green(`Committing: ${info.emoji} ${info.label}`));
             run(cmd);
         });
@@ -96,7 +98,7 @@ program
         const message = messageParts.join(" ");
         const info = commits[type];
         if (!info) {
-            console.error(chalk.red("Invalid type. See `gex emoji-list` for supported types."));
+            console.error(chalk.red("Invalid type. See `gx emoji-list` for supported types."));
             process.exit(1);
         }
         const commitMsg = `${info.code} ${info.label} : ${message}`;
@@ -120,7 +122,6 @@ program
     });
 
 // Add git alias commands (wrap common git commands)
-// Git aliases with detailed descriptions
 const gitAliases = {
     ga: { cmd: "git add .", desc: "Stage all changes (shortcut for `git add .`). Useful for quickly staging everything." },
     gs: { cmd: "git status", desc: "Show working tree status. See what’s modified, staged, or untracked." },
@@ -142,9 +143,7 @@ const gitAliases = {
     cls: { cmd: "clear", desc: "Clear terminal screen." }
 };
 
-
 // Create alias subcommands
-// Alias command runner
 program
     .command("a")
     .description("Run git aliases (shortcut commands for frequent git ops)")
@@ -166,7 +165,7 @@ program
         const entry = gitAliases[alias];
         if (!entry) {
             console.error(chalk.red("❌ Unknown alias."));
-            console.log(chalk.yellow("👉 Use `gex a list` to see all supported aliases."));
+            console.log(chalk.yellow("👉 Use `gx a list` to see all supported aliases."));
             process.exit(1);
         }
 
@@ -178,21 +177,26 @@ program
         run(cmd);
     });
 
-
 // Extra: show help with examples
 program
     .command("examples")
     .description("Show usage examples")
     .action(() => {
         console.log(chalk.bold("\nExamples:\n"));
-        console.log(chalk.green("  gex feature \"added login form\""));
-        console.log(chalk.green("  gex fix -a \"fixed crash on signup\""));
-        console.log(chalk.green("  gex fix -a --amend \"tweak message\""));
-        console.log(chalk.green("  gex amend fix \"updated commit message\""));
-        console.log(chalk.green("  gex a ga"));
-        console.log(chalk.green("  gex emoji-list"));
+        console.log(chalk.green("  gx feature \"added login form\""));
+        console.log(chalk.green("  gx fix -a \"fixed crash on signup\""));
+        console.log(chalk.green("  gx fix -a --amend \"tweak message\""));
+        console.log(chalk.green("  gx amend fix \"updated commit message\""));
+        console.log(chalk.green("  gx a ga"));
+        console.log(chalk.green("  gx emoji-list"));
         console.log("");
     });
+
+// Append developer info to help output (always visible in --help and default help)
+program.addHelpText(
+    "after",
+    `\n${chalk.bold("Developer Info")}\n  ${chalk.green("Name:")} ${developer.name}\n  ${chalk.green("GitHub:")} ${chalk.underline(developer.github)}\n  ${chalk.green("Email:")} ${developer.email}\n  ${chalk.dim(developer.note)}\n`
+);
 
 // If no args, display help
 if (process.argv.length <= 2) {

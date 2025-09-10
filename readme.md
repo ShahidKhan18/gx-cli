@@ -17,7 +17,7 @@ It provides:
 npm install -g gex-cli
 ```
 
-This makes the `gex` command available system-wide.
+This makes the `gx` command available system-wide.
 
 ## Usage
 
@@ -26,11 +26,11 @@ This makes the `gex` command available system-wide.
 Each commit type has an associated emoji + label:
 
 ```bash
-gex feature "add login form"
-gex fix "resolved signup crash"
-gex docs "update API documentation"
-gex ui "improve dashboard UI"
-gex perf "optimize query execution"
+gx feature "add login form"
+gx fix "resolved signup crash"
+gx docs "update API documentation"
+gx ui "improve dashboard UI"
+gx perf "optimize query execution"
 ```
 
 **Options:**
@@ -41,8 +41,8 @@ gex perf "optimize query execution"
 **Example:**
 
 ```bash
-gex fix -a "fixed null pointer issue"
-gex feature -a -A "add OTP validation"
+gx fix -a "fixed null pointer issue"
+gx feature -a -A "add OTP validation"
 ```
 
 ### Amend Last Commit
@@ -50,8 +50,8 @@ gex feature -a -A "add OTP validation"
 Rename/relabel your last commit with a new type and message:
 
 ```bash
-gex amend fix "better error handling"
-gex amend docs "typo fix in README"
+gx amend fix "better error handling"
+gx amend docs "typo fix in README"
 ```
 
 ### Emoji Reference
@@ -59,7 +59,7 @@ gex amend docs "typo fix in README"
 See all supported commit types, emojis, and meanings:
 
 ```bash
-gex emoji-list
+gx emoji-list
 ```
 
 | Emoji | Type          | Description                           |
@@ -92,13 +92,13 @@ gex emoji-list
 Run frequent Git commands via short aliases:
 
 ```bash
-gex a <alias> [args...]
+gx a <alias> [args...]
 ```
 
 Show all aliases:
 
 ```bash
-gex a list
+gx a list
 ```
 
 #### Available Aliases
@@ -127,24 +127,24 @@ gex a list
 **Examples:**
 
 ```bash
-gex a ga
-gex a gs
-gex a gco feature-branch
-gex a delete-local-branch old-branch
-gex a list
+gx a ga
+gx a gs
+gx a gco feature-branch
+gx a delete-local-branch old-branch
+gx a list
 ```
 
 ## Examples
 
 ```bash
-gex feature "added login form"
-gex fix -a "resolved crash on signup"
-gex fix -a --amend "tweak message"
-gex amend fix "updated commit message"
-gex a ga
-gex a gs
-gex emoji-list
-gex a list
+gx feature "added login form"
+gx fix -a "resolved crash on signup"
+gx fix -a --amend "tweak message"
+gx amend fix "updated commit message"
+gx a ga
+gx a gs
+gx emoji-list
+gx a list
 ```
 
 ## Why Use gex-cli?

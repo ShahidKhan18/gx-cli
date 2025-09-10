@@ -1,9 +1,9 @@
 {
-  "name": "gex-cli",
-  "version": "1.0.3",
-  "description": "gex-cli: A global Git helper CLI with gitmoji commit shortcuts and git aliases. Built with commander.js and chalk.",
+  "name": "gx-cli",
+  "version": "1.0.5",
+  "description": "gex-cli: A global Git helper CLI with git emoji commit shortcuts and git aliases. Built with commander.js and chalk.",
   "bin": {
-    "gex": "./index.js"
+    "gx": "./index.js"
   },
   "type": "module",
   "main": "index.js",

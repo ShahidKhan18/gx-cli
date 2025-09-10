@@ -1,6 +1,6 @@
 {
   "name": "gitx-cli",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "gitx-cli: A global Git helper CLI with git emoji commit shortcuts and git aliases. Built with commander.js and chalk.",
   "bin": {
     "gx": "./index.js"

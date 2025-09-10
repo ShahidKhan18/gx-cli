@@ -25,13 +25,13 @@
   ],
   "author": "Shahid Khan <shahidseran786@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/ShahidKhan18/gex-cli#readme",
+  "homepage": "https://github.com/ShahidKhan18/gitx-cli#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ShahidKhan18/gex-cli.git"
+    "url": "https://github.com/ShahidKhan18/gitx-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/ShahidKhan18/gex-cli/issues"
+    "url": "https://github.com/ShahidKhan18/gitx-cli/issues"
   },
   "dependencies": {
     "chalk": "^5.3.0",

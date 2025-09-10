@@ -1,5 +1,5 @@
 {
-  "name": "gx-cli",
+  "name": "gitx-cli",
   "version": "1.0.6",
   "description": "gex-cli: A global Git helper CLI with git emoji commit shortcuts and git aliases. Built with commander.js and chalk.",
   "bin": {

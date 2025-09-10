@@ -1,4 +1,4 @@
-# gex-cli
+# gitx-cli
 
 A **global Git helper CLI** built with [commander.js](https://www.npmjs.com/package/commander) and [chalk](https://www.npmjs.com/package/chalk).
 
@@ -14,7 +14,7 @@ It provides:
 ### Install globally from npm (once published)
 
 ```bash
-npm install -g gex-cli
+npm install -g gitx-cli
 ```
 
 This makes the `gx` command available system-wide.
@@ -147,7 +147,7 @@ gx emoji-list
 gx a list
 ```
 
-## Why Use gex-cli?
+## Why Use gitx-cli?
 
 - Faster commits with standardized messages (great for teams).
 - Gitmoji support makes commit logs more visual.
